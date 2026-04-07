@@ -53,6 +53,27 @@ sr.reveal('.amenity-item', { interval: 100, delay: 300 });
 sr.reveal('.dining-content', { origin: 'left', delay: 300 });
 sr.reveal('.dish-carousel', { origin: 'right', delay: 500 });
 
+// --- MOBILE MENU TOGGLE ---
+const menuToggle = document.getElementById('menu-toggle');
+const navLinks = document.getElementById('nav-links');
+
+if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+        menuToggle.classList.toggle('active');
+        navLinks.classList.toggle('active');
+        document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : 'auto';
+    });
+
+    // Close menu when a link is clicked
+    navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            menuToggle.classList.remove('active');
+            navLinks.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+    });
+}
+
 // --- SMOOTH SCROLL FOR LINKS ---
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
